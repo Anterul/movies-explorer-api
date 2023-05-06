@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const validator = require('validator');
+const Unauthorized = require('../utils/errors/Unauthorized');
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
+    required: true,
     default: 'Мария',
     minlength: [2, 'минимальная длина поля "name" - 2'],
     maxlength: [30, 'максимальная длина поля "name" - 30'],
