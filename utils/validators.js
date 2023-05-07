@@ -1,22 +1,32 @@
 const { celebrate, Joi } = require('celebrate');
 const { REGEX_URL } = require('./regEx');
+const {
+  MIN_NAME_LENGTH,
+  MAX_NAME_LENGTH,
+  NAME_MUST_BE_FILLED,
+  EMAIL_MUST_BE_FILLED,
+  EMAIL_MUST_BE_VALID,
+  PASSWORD_MUST_BE_FILLED,
+  ID_MUST_BE_24,
+  ID_MUST_BE_FILLED,
+} = require('./messageConstants');
 
 module.exports.validateRegister = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required()
       .messages({
-        'string.min': 'минимальная длина поля "name" - 2',
-        'string.max': 'максимальная длина поля "name" - 30',
-        'string.empty': 'поле "name" должно быть заполнено',
+        'string.min': MIN_NAME_LENGTH,
+        'string.max': MAX_NAME_LENGTH,
+        'string.empty': NAME_MUST_BE_FILLED,
       }),
     email: Joi.string().email().required()
       .messages({
-        'string.empty': 'поле "email" должно быть заполнено',
-        'any.only': 'поле "email" должно быть валидным адресом электронной почты',
+        'string.empty': EMAIL_MUST_BE_FILLED,
+        'any.only': EMAIL_MUST_BE_VALID,
       }),
     password: Joi.string().required()
       .messages({
-        'string.empty': 'поле "password" должно быть заполнено',
+        'string.empty': PASSWORD_MUST_BE_FILLED,
       }),
   }),
 });
@@ -25,12 +35,12 @@ module.exports.validateLogin = celebrate({
   body: Joi.object().keys({
     email: Joi.string().email().required()
       .messages({
-        'string.empty': 'поле "email" должно быть заполнено',
-        'any.only': 'поле "email" должно быть валидным адресом электронной почты',
+        'string.empty': EMAIL_MUST_BE_FILLED,
+        'any.only': EMAIL_MUST_BE_VALID,
       }),
     password: Joi.string().required()
       .messages({
-        'string.empty': 'поле "password" должно быть заполнено',
+        'string.empty': PASSWORD_MUST_BE_FILLED,
       }),
   }),
 });
@@ -39,14 +49,14 @@ module.exports.validateProfile = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required()
       .messages({
-        'string.min': 'минимальная длина поля "name" - 2',
-        'string.max': 'максимальная длина поля "name" - 30',
-        'string.empty': 'поле "name" должно быть заполнено',
+        'string.min': MIN_NAME_LENGTH,
+        'string.max': MAX_NAME_LENGTH,
+        'string.empty': NAME_MUST_BE_FILLED,
       }),
     email: Joi.string().email().required()
       .messages({
-        'string.empty': 'поле "email" должно быть заполнено',
-        'any.only': 'поле "email" должно быть валидным адресом электронной почты',
+        'string.empty': EMAIL_MUST_BE_FILLED,
+        'any.only': EMAIL_MUST_BE_VALID,
       }),
   }),
 });
@@ -72,8 +82,8 @@ module.exports.validateMovieCardId = celebrate({
   params: Joi.object().keys({
     movieCardId: Joi.string().hex().length(24).required()
       .messages({
-        'string.empty': 'поле "id" должно быть заполнено',
-        'any.only': 'поле "id" должно состоять из 24 символов',
+        'string.empty': ID_MUST_BE_FILLED,
+        'any.only': ID_MUST_BE_24,
       }),
   }),
 });
