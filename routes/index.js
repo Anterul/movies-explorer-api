@@ -1,13 +1,13 @@
 const routes = require('express').Router();
 const cors = require('cors');
 const auth = require('../middlewares/auth');
-const { login, createUser } = require('../controllers/users');
+const { createUser, login } = require('../controllers/users');
 const { validateRegister, validateLogin } = require('../utils/validators');
 
 routes.use('*', cors());
 
-routes.post('/signin', validateLogin, login);
 routes.post('/signup', validateRegister, createUser);
+routes.post('/signin', validateLogin, login);
 
 routes.use(auth);
 
