@@ -2,6 +2,9 @@
 
 ## Серверная часть дипломной работы курса "веб-разработчик" от [Яндекс.Практикум](https://practicum.yandex.ru/), написанная на Node.js и Express.
 
+IP 158.160.34.188
+Backend https://api.explorer.nomoredomains.monster
+
 ## Приложение **movies-explorer-api** на GitHub <https://api.explorer.nomoredomains.monster> <img src="https://raw.githubusercontent.com/devicons/devicon/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/github/github-original.svg" alt="GitHub" width="20px"/>
 
 ---
